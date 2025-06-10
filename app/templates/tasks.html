@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Add Task</h2>
+    <form method="post" action="/add-task">
+        <label for="title">Task Title:</label>
+        <input type="text" name="title" id="title" required>
+
+        <label for="status">Status:</label>
+        <select name="status" id="status">
+            <option value="Pending">Pending</option>
+            <option value="In_progress">In Progress</option>
+            <option value="Done">Done</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div class="task-list">
+    <h2>All Tasks</h2>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            <span><strong>ID:</strong> {{task.id}}</span>
+            <span><strong>Title:</strong> {{task.title}}</span>
+            <span><strong>Status:</strong> {{task.status}}</span>
+            <form method="POST" action="{{ url_for('tasks.delete', id=task.id) }}" style="display:inline;">
+                <button type="submit" class="delete-btn">Delete</button>
+            </form>
+            <form method="POST" action="{{ url_for('tasks.update') }}?id={{ task.id }}&t_status={{ task.status }}" style="display:inline;">
+                <button type="submit" class="done-btn">Change Status</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

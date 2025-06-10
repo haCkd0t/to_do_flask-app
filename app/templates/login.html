@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Login</h2>
+    <form method="post" action="/">
+        <input type="text" name="name" id="name" placeholder="Enter your name" required>
+        <input type="password" name="password" id="password" placeholder="Enter your password" required>
+        <button type="submit">Done</button>
+
+        {% with msg = get_flashed_messages() %}
+            {% if msg %}
+                <ul class="flash-messages">
+                    {% for m in msg %}
+                        <li>{{ m }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </form>
+</div>
+{% endblock %}
