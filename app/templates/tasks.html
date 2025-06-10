@@ -23,7 +23,7 @@
     <ul>
         {% for task in tasks %}
         <li>
-            <span><strong>ID:</strong> {{task.id}}</span>
+            <span><strong>ID:</strong> {{loop.index}}</span>
             <span><strong>Title:</strong> {{task.title}}</span>
             <span><strong>Status:</strong> {{task.status}}</span>
             <form method="POST" action="{{ url_for('tasks.delete', id=task.id) }}" style="display:inline;">
